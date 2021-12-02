@@ -1,9 +1,10 @@
-package com.everest.airline;
+package com.everest.airline.DTO;
 
 public class Flight {
     private long number;
     private String source;
     private String destination;
+
 
     public Flight(long number, String source, String destination) {
         this.number = number;
