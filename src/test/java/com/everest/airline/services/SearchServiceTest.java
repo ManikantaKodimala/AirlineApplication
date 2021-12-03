@@ -1,7 +1,7 @@
 package com.everest.airline.services;
 
-import com.everest.airline.DTO.Flight;
-import com.everest.airline.Data;
+import com.everest.airline.model.Flight;
+import com.everest.airline.database.Data;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

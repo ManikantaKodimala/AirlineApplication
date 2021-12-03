@@ -1,4 +1,4 @@
-package com.everest.airline.DTO;
+package com.everest.airline.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

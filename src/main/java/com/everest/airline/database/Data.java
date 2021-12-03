@@ -1,8 +1,7 @@
-package com.everest.airline;
+package com.everest.airline.database;
 
-import com.everest.airline.DTO.Flight;
+import com.everest.airline.model.Flight;
 
-import java.lang.invoke.ConstantCallSite;
 import java.util.Calendar;
 import java.util.List;
 
