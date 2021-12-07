@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class SearchServiceTest {
     SearchService searchService;
 
     @Test
-    void testGetFlightsBySourceAndDestination(){
+    void testGetFlightsBySourceAndDestination() throws IOException {
         String source="Hyderabad";
         String destination="Bangalore";
         List<Flight> expected =List.of(Data.flights.get(0),Data.flights.get(5));

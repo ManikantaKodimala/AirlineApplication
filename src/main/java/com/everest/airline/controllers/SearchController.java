@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -19,10 +20,10 @@ public class SearchController {
     }
 
     @RequestMapping(value = "/search")
-    public String search(String from, String to, String departureDate, Model model){
-        System.out.println("form date="+departureDate);
+    public String search(String from, String to, String departureDate, Model model) throws IOException {
         List<Flight> searchData = searchService.getFlights(from, to,departureDate);
         model.addAttribute("flights", searchData);
+        searchService.updateFlightData(searchData);
         return "search";
     }
 }

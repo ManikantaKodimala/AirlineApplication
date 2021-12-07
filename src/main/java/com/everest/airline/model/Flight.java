@@ -12,7 +12,7 @@ public class Flight {
     private Calendar arrivalDateTime;
     private int noOfTotalSeats;
     private int noOfSeatsAvailable;
-
+    private int noOfPassengersPerBook =1;
 
     public Flight(long number, String source, String destination,Calendar departureDateTime,Calendar arrivalDateTime,int noOfTotalSeats, int noOfSeatsAvailable) {
         this.number = number;
@@ -73,5 +73,26 @@ public class Flight {
     }
     public int getAvailableSeats(){
         return this.noOfSeatsAvailable;
+    }
+
+    public String getFlightDetails(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getNumber()+",");
+        sb.append(this.getSource()+",");
+        sb.append(this.getDestination()+",");
+        sb.append(this.getDepartureDate()+" "+this.getDepartureTime()+",");
+        sb.append(this.getArrivalDate()+" "+this.getArrivalTime()+",");
+        sb.append(this.getNoOfTotalSeats()+",");
+        sb.append(this.getAvailableSeats());
+        return sb.toString();
+    }
+
+    public int getNoOfTotalSeats() {
+        return noOfTotalSeats;
+    }
+
+
+    public void setAvailableSeats() {
+        this.noOfSeatsAvailable-=this.noOfPassengersPerBook;
     }
 }
