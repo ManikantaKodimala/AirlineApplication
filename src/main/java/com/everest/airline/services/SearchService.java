@@ -2,6 +2,7 @@ package com.everest.airline.services;
 
 import com.everest.airline.DTO.FlightDTO;
 import com.everest.airline.model.Flight;
+import com.everest.airline.utils.FlightException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class SearchService {
         result = getFlightsBySourceAndDestination(from, to);
         result = getFlightsByDepartureDate(result, departureDate);
         result=getFLightsWithAvailableSeats(result);
+        if(result.size()==0)
+            throw new FlightException("flights ara not available");
         return result;
     }
 
@@ -44,8 +47,4 @@ public class SearchService {
         return flightDTO.getFlights(from,to);
     }
 
-    public void updateFlightData(List<Flight> searchData) throws IOException {
-        searchData.stream().forEach(flight ->flight.setAvailableSeats());
-        flightDTO.updateFlightData(searchData);
-    }
 }
