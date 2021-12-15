@@ -16,7 +16,7 @@ class SearchServiceTest {
     SearchService searchService;
 
     @Test
-    void testGetFlightsBySourceAndDestination() throws IOException {
+    void testGetFlightsBySourceAndDestination() throws Exception {
         String source="Hyderabad";
         String destination="Bangalore";
         List<Flight> expected =List.of(Data.flights.get(0),Data.flights.get(5));

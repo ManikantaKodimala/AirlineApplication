@@ -12,16 +12,31 @@ public class Flight {
     private Calendar arrivalDateTime;
     private int noOfTotalSeats;
     private int noOfSeatsAvailable;
-    private int noOfPassengersPerBook =1;
+    private int availableBusinessClassSeats;
+    private int availableEconomicClassSeats;
+    private int availableFirstClassSeats;
+    private int availableSecondClassSeats;
+    private int businessClassTicketCost = 500;
+    private int firstClassTicketCost = 400;
+    private int secondClassTicketCost = 300;
+    private int economicClassTicketCost = 200;
+    private int totalFair=0;
 
-    public Flight(long number, String source, String destination,Calendar departureDateTime,Calendar arrivalDateTime,int noOfTotalSeats, int noOfSeatsAvailable) {
+    public Flight(long number, String source, String destination, Calendar departureDateTime, Calendar arrivalDateTime, int noOfTotalSeats, int noOfSeatsAvailable, int availableBusinessClassSeats,
+                  int availableFirstClassSeats,
+                  int availableSecondClassSeats,
+                  int availableEconomicClassSeats) {
         this.number = number;
         this.source = source;
         this.destination = destination;
-        this.departureDateTime=departureDateTime;
-        this.arrivalDateTime=arrivalDateTime;
-        this.noOfSeatsAvailable=noOfSeatsAvailable;
-        this.noOfTotalSeats=noOfTotalSeats;
+        this.departureDateTime = departureDateTime;
+        this.arrivalDateTime = arrivalDateTime;
+        this.noOfSeatsAvailable = noOfSeatsAvailable;
+        this.noOfTotalSeats = noOfTotalSeats;
+        this.availableBusinessClassSeats = availableBusinessClassSeats;
+        this.availableFirstClassSeats = availableFirstClassSeats;
+        this.availableSecondClassSeats = availableSecondClassSeats;
+        this.availableEconomicClassSeats = availableEconomicClassSeats;
     }
 
     public long getNumber() {
@@ -51,40 +66,33 @@ public class Flight {
     public void setArrivalDateTime(Calendar arrivalDateTime) {
         this.arrivalDateTime = arrivalDateTime;
     }
-    public String getDepartureDate(){
+
+    public String getDepartureDate() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date=this.departureDateTime.getTime();
+        Date date = this.departureDateTime.getTime();
         return formatter.format(date);
-    }
-    public String getDepartureTime(){
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
-        Date date=this.departureDateTime.getTime();
-        return formatter.format(date);
-    }
-    public String getArrivalDate(){
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date=this.arrivalDateTime.getTime();
-        return formatter.format(date);
-    }
-    public String getArrivalTime(){
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
-        Date date=this.arrivalDateTime.getTime();
-        return formatter.format(date);
-    }
-    public int getAvailableSeats(){
-        return this.noOfSeatsAvailable;
     }
 
-    public String getFlightDetails(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getNumber()+",");
-        sb.append(this.getSource()+",");
-        sb.append(this.getDestination()+",");
-        sb.append(this.getDepartureDate()+" "+this.getDepartureTime()+",");
-        sb.append(this.getArrivalDate()+" "+this.getArrivalTime()+",");
-        sb.append(this.getNoOfTotalSeats()+",");
-        sb.append(this.getAvailableSeats());
-        return sb.toString();
+    public String getDepartureTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
+        Date date = this.departureDateTime.getTime();
+        return formatter.format(date);
+    }
+
+    public String getArrivalDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = this.arrivalDateTime.getTime();
+        return formatter.format(date);
+    }
+
+    public String getArrivalTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
+        Date date = this.arrivalDateTime.getTime();
+        return formatter.format(date);
+    }
+
+    public int getAvailableSeats() {
+        return this.noOfSeatsAvailable;
     }
 
     public int getNoOfTotalSeats() {
@@ -92,7 +100,83 @@ public class Flight {
     }
 
 
-    public void setAvailableSeats() {
-        this.noOfSeatsAvailable-=this.noOfPassengersPerBook;
+    public void setAvailableSeats(int noOfPassengersPerBook) {
+        this.noOfSeatsAvailable -= noOfPassengersPerBook;
+    }
+
+    public void upDateEconomicClassSeats(int noOfEconomicTickets) {
+        this.availableEconomicClassSeats -= noOfEconomicTickets;
+        setAvailableSeats(noOfEconomicTickets);
+    }
+
+    public void upDateBusinessClassSeats(int noOfBusinessClassTickets) {
+        this.availableBusinessClassSeats -= noOfBusinessClassTickets;
+        setAvailableSeats(noOfBusinessClassTickets);
+    }
+
+    public void upDateFirstClassSeats(int noOfFirstClassTickets) {
+        this.availableFirstClassSeats -= noOfFirstClassTickets;
+        setAvailableSeats(noOfFirstClassTickets);
+    }
+
+    public void upDateSecondClassSeats(int noOfSecondClassTickets) {
+        this.availableSecondClassSeats -= noOfSecondClassTickets;
+        setAvailableSeats(noOfSecondClassTickets);
+    }
+
+    public int getAvailableBusinessClassSeats() {
+        return availableBusinessClassSeats;
+    }
+
+    public int getAvailableEconomicClassSeats() {
+        return availableEconomicClassSeats;
+    }
+
+    public int getAvailableFirstClassSeats() {
+        return availableFirstClassSeats;
+    }
+
+    public int getAvailableSecondClassSeats() {
+        return availableSecondClassSeats;
+    }
+
+    public int getEconomicClassTicketCost() {
+        return economicClassTicketCost;
+    }
+
+    public int getSecondClassTicketCost() {
+        return secondClassTicketCost;
+    }
+
+    public int getFirstClassTicketCost() {
+        return firstClassTicketCost;
+    }
+
+    public int getBusinessClassTicketCost() {
+        return businessClassTicketCost;
+    }
+
+    public int getAvailableSeatsOf(String classType) {
+        switch (classType) {
+            case "businessClass":
+                return this.availableBusinessClassSeats;
+            case "firstClass":
+                return this.availableFirstClassSeats;
+            case "secondClass":
+                return this.availableSecondClassSeats;
+            case "economicClass":
+                return this.availableEconomicClassSeats;
+            default:
+                return -1;
+        }
+    }
+
+
+    public int getTotalFair() {
+        return totalFair;
+    }
+
+    public void setTotalFair(int totalFair) {
+        this.totalFair = totalFair;
     }
 }

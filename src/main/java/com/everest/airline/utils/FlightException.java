@@ -5,6 +5,7 @@ public class FlightException extends RuntimeException{
     protected FlightException() {}
 
     public FlightException(String message) {
+        System.out.println("constructor "+message);
         this.message = message;
     }
 }

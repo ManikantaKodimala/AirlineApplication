@@ -8,7 +8,7 @@
 
 <body>
     <h1>Airline application</h1>
-    <form action="#" th:action="@{/search}" th:object="${searchForm}" method="post">
+    <form action="#" th:action="@{/search}"  method="post">
         <label for="from">From</label>
         <input id="from" name="from" required="required" />
         <br />
@@ -20,6 +20,17 @@
         <label for="departureDate">DepartureDate</label>
         <input type ="date" id="departureDate" name="departureDate" required="required" />
         <br />
+        <label for="numberOfPassengers">Total Number of Passengers</label>
+        <input id="numberOfPassengers" name="numberOfPassengers" required="required" type="number" />
+        <br/>
+        <br/>
+        <label for="classType">Choose a class type:</label>
+        <select id="classType" name="classType">
+            <option value="businessClass">Business Class</option>
+            <option value="economicClass">Economic Class</option>
+            <option value="firstClass">First Class</option>
+            <option value="secondClass">Second Class</option>
+        </select>
         <input type="submit" value="Search" />
     </form>
 </body>

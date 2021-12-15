@@ -1,0 +1,65 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Booking</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<table border="1">-->
+<!--    <th>Number</th>-->
+<!--    <th>From</th>-->
+<!--    <th>To</th>-->
+<!--    <th>Departure Date</th>-->
+<!--    <th>Departure Time</th>-->
+<!--    <th>Arrival Date</th>-->
+<!--    <th>Arrival Time</th>-->
+<!--    <th>No.of Seats Available</th>-->
+<!--    <th>availableBusinessClassSeats</th>-->
+<!--    <th>availableFirstClassSeats</th>-->
+<!--    <th>availableSecondClassSeats</th>-->
+<!--    <th>availableEconomicClassSeats</th>-->
+<!--    <tr>-->
+<!--        <td th:text="${flight.number}"></td>-->
+<!--        <td th:text="${flight.source}"></td>-->
+<!--        <td th:text="${flight.destination} "></td>-->
+<!--        <td th:text="${flight.departureDate}"></td>-->
+<!--        <td th:text="${flight.departureTime}"></td>-->
+<!--        <td th:text="${flight.arrivalDate}"></td>-->
+<!--        <td th:text="${flight.arrivalTime}"></td>-->
+<!--        <td th:text="${flight.availableSeats}"></td>-->
+<!--        <td th:text="${flight.availableBusinessClassSeats}">[</td>-->
+<!--        <td th:text="${flight.availableFirstClassSeats}"></td>-->
+<!--        <td th:text="${flight.availableSecondClassSeats}"></td>-->
+<!--        <td th:text="${flight.availableEconomicClassSeats}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+
+<!--<form th:action="@{/bookFlight}" th:object="${searchForm}" method="post">-->
+<!--    <label for="numberOfPassengers">Total Number of Passengers</label>-->
+<!--    <input id="numberOfPassengers" name="numberOfPassengers" required="required" type="number" th:min="1" th:max="${flight.availableSeats}" />-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    <label for="businessClass">Business Class Tickets</label>-->
+<!--    <input id="businessClass" name="numberOfBusinessClassTickets" type="number" placeholder="0" th:value="0" th:min="0" th:max="${flight.availableBusinessClassSeats}">-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    <label for="economicClass">Economic Class Tickets</label>-->
+<!--    <input id="economicClass" name="numberOfEconomicClassTickets" type="number" placeholder="0" th:value="0" th:min="0" th:max="${flight.availableFirstClassSeats}">-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    <label for="firstClass">First Class Tickets</label>-->
+<!--    <input id="firstClass" name="numberOfFirstClassTickets" type="number" placeholder="0" th:value="0" th:min="0" th:max="${flight.availableSecondClassSeats}">-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    <label for="secondClass">Second Class Tickets</label>-->
+<!--    <input id="secondClass" name="numberOfSecondClassTickets" type="number" placeholder="0" th:value="0" th:min="0" th:max="${flight.availableEconomicClassSeats}">-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    <button type="submit" name="flightNumber" th:value="${flightNumber}" onclick="">Book</button>-->
+<!--    <br />-->
+<!--    <br/>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
