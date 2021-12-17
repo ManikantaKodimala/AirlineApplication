@@ -3,9 +3,11 @@ package com.everest.airline.controllers;
 import com.everest.airline.DTO.BookingDTO;
 import com.everest.airline.DTO.FlightDTO;
 import com.everest.airline.model.Flight;
+import com.everest.airline.services.PriceStrategyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,20 +20,18 @@ public class BookingController {
     private BookingDTO bookingDTO;
     @Autowired
     private FlightDTO flightDTO;
+    @Autowired
+    PriceStrategyService priceStrategyService;
     @RequestMapping("/bookFlight")
-    public String bookTicket(String flightNumber,String numberOfPassengers,String selectedClassType, Model model) throws IOException, ParseException {
+    public String bookTicket( String flightNumber,String numberOfPassengers,String selectedClassType, Model model) throws IOException, ParseException {
         int flightNum=Integer.parseInt(flightNumber);
         Flight bookedFlight=bookingDTO.getFlight(flightNum);
-//        String  selectedClassType =  model.getAttribute();
-        System.out.println("########"+selectedClassType);
-        System.out.println("@@@@@"+numberOfPassengers);
-//        int numberOfPassengers = (int) model.asMap().get("numberOfPassengers");
         flightDTO.upDateSeats(bookedFlight,selectedClassType,Integer.parseInt(numberOfPassengers));
-
-
         bookingDTO.updateFlightData(bookedFlight);
-        return "home";
+        priceStrategyService.updateTotalFaire(bookedFlight,Integer.parseInt(numberOfPassengers),selectedClassType);
+        model.addAttribute("flight",bookedFlight);
+        model.addAttribute("selectedClassType",selectedClassType);
+        model.addAttribute("numberOfPassengers",numberOfPassengers);
+        return "book";
     }
-
-
 }
