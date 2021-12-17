@@ -78,7 +78,7 @@ public class FlightDTO {
         sb.append(flight.getDestination() + ",");
         sb.append(flight.getDepartureDate() + " " + flight.getDepartureTime() + ",");
         sb.append(flight.getArrivalDate() + " " + flight.getArrivalTime() + ",");
-        sb.append(flight.getNoOfTotalSeats() + ",");
+        sb.append(flight.getNumberOfTotalSeats() + ",");
         sb.append(flight.getAvailableSeats() + ",");
         sb.append(flight.getAvailableBusinessClassSeats() + ",");
         sb.append(flight.getAvailableFirstClassSeats() + ",");
@@ -120,11 +120,5 @@ public class FlightDTO {
             default:
                 return 0;
         }
-    }
-
-    public void calculateTotalFaire(Flight flight, int numberOfPassengers, String classType) {
-        int costOfSeat = getCostOfSeat(classType, flight);
-        int totalFaire = costOfSeat * numberOfPassengers;
-        flight.setTotalFair(totalFaire);
     }
 }
