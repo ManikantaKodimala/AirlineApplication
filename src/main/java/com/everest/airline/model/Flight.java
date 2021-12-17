@@ -10,7 +10,7 @@ public class Flight {
     private String destination;
     private Calendar departureDateTime;
     private Calendar arrivalDateTime;
-    private int noOfTotalSeats;
+    private int numberOfTotalSeats;
     private int noOfSeatsAvailable;
     private int availableBusinessClassSeats;
     private int availableEconomicClassSeats;
@@ -20,7 +20,7 @@ public class Flight {
     private int firstClassTicketCost = 400;
     private int secondClassTicketCost = 300;
     private int economicClassTicketCost = 200;
-    private int totalFair=0;
+    private double totalFair=0;
 
     public Flight(long number, String source, String destination, Calendar departureDateTime, Calendar arrivalDateTime, int noOfTotalSeats, int noOfSeatsAvailable, int availableBusinessClassSeats,
                   int availableFirstClassSeats,
@@ -32,7 +32,7 @@ public class Flight {
         this.departureDateTime = departureDateTime;
         this.arrivalDateTime = arrivalDateTime;
         this.noOfSeatsAvailable = noOfSeatsAvailable;
-        this.noOfTotalSeats = noOfTotalSeats;
+        this.numberOfTotalSeats = noOfTotalSeats;
         this.availableBusinessClassSeats = availableBusinessClassSeats;
         this.availableFirstClassSeats = availableFirstClassSeats;
         this.availableSecondClassSeats = availableSecondClassSeats;
@@ -95,8 +95,8 @@ public class Flight {
         return this.noOfSeatsAvailable;
     }
 
-    public int getNoOfTotalSeats() {
-        return noOfTotalSeats;
+    public int getNumberOfTotalSeats() {
+        return numberOfTotalSeats;
     }
 
 
@@ -172,11 +172,11 @@ public class Flight {
     }
 
 
-    public int getTotalFair() {
+    public double getTotalFair() {
         return totalFair;
     }
 
-    public void setTotalFair(int totalFair) {
+    public void setTotalFair(double totalFair) {
         this.totalFair = totalFair;
     }
 }
