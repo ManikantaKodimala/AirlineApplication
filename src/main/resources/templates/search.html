@@ -8,8 +8,8 @@
 
 <body>
     <h1>Airline application</h1>
-    <form th:action="@{/bookFlight}" th:object="${flight}" method="post">
-    <table border="1">
+
+    <table border="1" >
         <th>Number</th>
         <th>From</th>
         <th>To</th>
@@ -17,12 +17,9 @@
         <th>Departure Time</th>
         <th>Arrival Date</th>
         <th>Arrival Time</th>
-        <th>No.of Seats Available</th>
-        <th>BusinessClassSeats</th>
-        <th>FirstClassSeats</th>
-        <th>SecondClassSeats</th>
-        <th>EconomicClassSeats</th>
-        <th>Total cost</th>
+        <th>Class Type</th>
+        <th>Available Seats</th>
+        <th>Total Fare</th>
         <th>Book</th>
         <tr th:each="flight:${flights}">
             <td th:text="${flight.number}"></td>
@@ -32,22 +29,19 @@
             <td th:text="${flight.departureTime}"></td>
             <td th:text="${flight.arrivalDate}"></td>
             <td th:text="${flight.arrivalTime}"></td>
-            <td th:text="${flight.availableSeats}"></td>
-            <td th:text="${flight.availableBusinessClassSeats +'(Cost per ticket'+flight.businessClassTicketCost +'/-only)'}"></td>
-            <td th:text="${flight.availableFirstClassSeats +'(Cost per ticket'+flight.firstClassTicketCost +')/-only'}"></td>
-            <td th:text="${flight.availableSecondClassSeats +'(Cost per ticket'+flight.secondClassTicketCost +')/-only'}"></td>
-            <td th:text="${flight.availableEconomicClassSeats +'(Cost per ticket'+flight.economicClassTicketCost +')/-only'}"></td>
+            <td th:text="${selectedClassType}"></td>
+            <td th:text="${flight.getAvailableSeatsOf(selectedClassType)}"></td>
             <td th:text="${flight.totalFair}"></td>
             <td>
+                <form th:action="@{/bookFlight}" th:object="${flight}" method="post" modelAttribute="flight">
                 <input type="hidden" name="selectedClassType" th:value="${selectedClassType}">
                 <input type="hidden" th:value="${numberOfPassengers}" name="numberOfPassengers">
                     <input type="hidden" for="flightNumber">
                     <button type="submit" id ="flightNumber" th:value="${flight.number}" name="flightNumber">Book</button>
+                </form>
             </td>
         </tr>
     </table>
-
-    </form>
 
 </body>
 
