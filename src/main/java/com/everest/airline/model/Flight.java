@@ -22,10 +22,8 @@ public class Flight {
     private int economicClassTicketCost = 200;
     private double totalFair=0;
 
-    public Flight(long number, String source, String destination, Calendar departureDateTime, Calendar arrivalDateTime, int noOfTotalSeats, int noOfSeatsAvailable, int availableBusinessClassSeats,
-                  int availableFirstClassSeats,
-                  int availableSecondClassSeats,
-                  int availableEconomicClassSeats) {
+    public Flight(){}
+    public Flight(long number, String source, String destination, Calendar departureDateTime, Calendar arrivalDateTime, int noOfTotalSeats, int noOfSeatsAvailable, int availableBusinessClassSeats, int availableFirstClassSeats, int availableSecondClassSeats, int availableEconomicClassSeats) {
         this.number = number;
         this.source = source;
         this.destination = destination;
@@ -49,6 +47,62 @@ public class Flight {
 
     public String getDestination() {
         return destination;
+    }
+
+    public void setSource(String source){
+        this.source=source;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public void setDepartureDateTime(Calendar departureDateTime) {
+        this.departureDateTime = departureDateTime;
+    }
+
+    public void setNumberOfTotalSeats(int numberOfTotalSeats) {
+        this.numberOfTotalSeats = numberOfTotalSeats;
+    }
+
+    public void setNoOfSeatsAvailable(int noOfSeatsAvailable) {
+        this.noOfSeatsAvailable = noOfSeatsAvailable;
+    }
+
+    public void setAvailableBusinessClassSeats(int availableBusinessClassSeats) {
+        this.availableBusinessClassSeats = availableBusinessClassSeats;
+    }
+
+    public void setAvailableEconomicClassSeats(int availableEconomicClassSeats) {
+        this.availableEconomicClassSeats = availableEconomicClassSeats;
+    }
+
+    public void setAvailableFirstClassSeats(int availableFirstClassSeats) {
+        this.availableFirstClassSeats = availableFirstClassSeats;
+    }
+
+    public void setAvailableSecondClassSeats(int availableSecondClassSeats) {
+        this.availableSecondClassSeats = availableSecondClassSeats;
+    }
+
+    public void setBusinessClassTicketCost(int businessClassTicketCost) {
+        this.businessClassTicketCost = businessClassTicketCost;
+    }
+
+    public void setFirstClassTicketCost(int firstClassTicketCost) {
+        this.firstClassTicketCost = firstClassTicketCost;
+    }
+
+    public void setSecondClassTicketCost(int secondClassTicketCost) {
+        this.secondClassTicketCost = secondClassTicketCost;
+    }
+
+    public void setEconomicClassTicketCost(int economicClassTicketCost) {
+        this.economicClassTicketCost = economicClassTicketCost;
     }
 
     public Date getDepartureDateTime() {

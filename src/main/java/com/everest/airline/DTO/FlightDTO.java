@@ -37,7 +37,6 @@ public class FlightDTO {
         List<Flight> flightsList = new ArrayList<>();
         lines.filter(flightData -> {
             List<String> flightDataList = List.of(flightData.split("[,]", 0));
-//            System.out.println("read=="+flightData.length());
             return flightDataList.get(1).equals(source) && flightDataList.get(2).equals(destination);
         }).forEach(flightData -> {
             Flight flight = null;
@@ -55,7 +54,6 @@ public class FlightDTO {
         List<String> flightDataList = List.of(flightData.split("[,]", 0));
         Calendar departureDateTime = getDateAndTime(flightDataList.get(3));
         Calendar arrivalDateTime = getDateAndTime(flightDataList.get(4));
-//        System.out.println("flight data===="+flightDataList.size());
         int businessClassSeats = Integer.parseInt(flightDataList.get(7));
         int firstClassSeats = Integer.parseInt(flightDataList.get(8));
         int secondClassSeats = Integer.parseInt(flightDataList.get(9));
@@ -63,7 +61,7 @@ public class FlightDTO {
         return new Flight(Integer.parseInt(flightDataList.get(0)), flightDataList.get(1), flightDataList.get(2), departureDateTime, arrivalDateTime, Integer.parseInt(flightDataList.get(5)), Integer.parseInt(flightDataList.get(6)), businessClassSeats, firstClassSeats, secondClassSeats, economicClassSeats);
     }
 
-    private Calendar getDateAndTime(String s) throws ParseException {
+    public Calendar getDateAndTime(String s) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date date = formatter.parse(s);
         Calendar cal = Calendar.getInstance();
