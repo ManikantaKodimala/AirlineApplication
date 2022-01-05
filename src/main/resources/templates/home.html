@@ -9,6 +9,10 @@
 <body>
     <h1>Airline application</h1>
     <form action="#" th:action="@{/search}"  method="post">
+        <label for="todayDate">Today Date</label>
+        <input type="date" id="todayDate" name="todayDate" required="required" />
+        <br />
+        <br />
         <label for="from">From</label>
         <input id="from" name="from" required="required" />
         <br />
