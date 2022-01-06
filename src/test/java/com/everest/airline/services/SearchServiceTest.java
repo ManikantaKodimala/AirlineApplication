@@ -36,12 +36,12 @@ class SearchServiceTest {
         assertArrayEquals(expected.toArray(),actual.toArray());
     }
 
-    @Test
-    void testGetFLightsWithAvailableSeats(){
-        List<Flight> expected = List.of(Data.flights.get(0),Data.flights.get(1),Data.flights.get(2),Data.flights.get(3));
-
-        List<Flight> actual= searchService.getFLightsWithAvailableSeats(Data.flights);
-
-        assertArrayEquals(expected.toArray(),actual.toArray());
-    }
+//    @Test
+//    void testGetFLightsWithAvailableSeats(){
+//        List<Flight> expected = List.of(Data.flights.get(0),Data.flights.get(1),Data.flights.get(2),Data.flights.get(3));
+//
+//        List<Flight> actual= searchService.getFLightsWithAvailableSeats(Data.flights);
+//
+//        assertArrayEquals(expected.toArray(),actual.toArray());
+//    }
 }
