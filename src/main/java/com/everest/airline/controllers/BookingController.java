@@ -23,12 +23,12 @@ public class BookingController {
     @Autowired
     PriceStrategyService priceStrategyService;
     @RequestMapping("/bookFlight")
-    public String bookTicket( String flightNumber,String numberOfPassengers,String selectedClassType, Model model) throws IOException, ParseException {
+    public String bookTicket( String flightNumber,String numberOfPassengers,String selectedClassType, String todayDate,Model model) throws IOException, ParseException {
         int flightNum=Integer.parseInt(flightNumber);
         Flight bookedFlight=bookingDTO.getFlight(flightNum);
         flightDTO.upDateSeats(bookedFlight,selectedClassType,Integer.parseInt(numberOfPassengers));
         bookingDTO.updateFlightData(bookedFlight);
-        priceStrategyService.updateTotalFaire(bookedFlight,Integer.parseInt(numberOfPassengers),selectedClassType);
+        priceStrategyService.updateTotalFaire(bookedFlight,Integer.parseInt(numberOfPassengers),selectedClassType,todayDate);
         model.addAttribute("flight",bookedFlight);
         model.addAttribute("selectedClassType",selectedClassType);
         model.addAttribute("numberOfPassengers",numberOfPassengers);
