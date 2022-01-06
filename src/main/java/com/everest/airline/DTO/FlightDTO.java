@@ -1,6 +1,6 @@
 package com.everest.airline.DTO;
 
-import com.everest.airline.model.Flight;
+import com.everest.airline.model.*;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -30,6 +30,7 @@ public class FlightDTO {
             List<Flight> flights = readFlightsData(lines, source, destination);
             flights.forEach(flight -> flightsList.add(flight));
         });
+        System.out.println("source destinationn="+flightsList.size());
         return flightsList;
     }
 
@@ -52,13 +53,16 @@ public class FlightDTO {
 
     public Flight getFlightInstance(String flightData) throws ParseException {
         List<String> flightDataList = List.of(flightData.split("[,]", 0));
+        System.out.println("data from file "+flightData);
         Calendar departureDateTime = getDateAndTime(flightDataList.get(3));
         Calendar arrivalDateTime = getDateAndTime(flightDataList.get(4));
-        int businessClassSeats = Integer.parseInt(flightDataList.get(7));
-        int firstClassSeats = Integer.parseInt(flightDataList.get(8));
-        int secondClassSeats = Integer.parseInt(flightDataList.get(9));
-        int economicClassSeats = Integer.parseInt(flightDataList.get(10));
-        return new Flight(Integer.parseInt(flightDataList.get(0)), flightDataList.get(1), flightDataList.get(2), departureDateTime, arrivalDateTime, Integer.parseInt(flightDataList.get(5)), Integer.parseInt(flightDataList.get(6)), businessClassSeats, firstClassSeats, secondClassSeats, economicClassSeats);
+        EconomicClassSeat economicClassSeat=new EconomicClassSeat(Integer.parseInt(flightDataList.get(6)),Integer.parseInt(flightDataList.get(7)),Integer.parseInt(flightDataList.get(8)));
+        SecondClassSeats secondClassSeat=new SecondClassSeats(Integer.parseInt(flightDataList.get(9)),Integer.parseInt(flightDataList.get(10)),Integer.parseInt(flightDataList.get(11)));
+        FirstClassSeat firstClassSeat =new FirstClassSeat(Integer.parseInt(flightDataList.get(12)),Integer.parseInt(flightDataList.get(13)),Integer.parseInt(flightDataList.get(14)));
+        Seat seats = new Seat(economicClassSeat,secondClassSeat,firstClassSeat);
+        Flight flight=new Flight(Integer.parseInt(flightDataList.get(0)), flightDataList.get(1), flightDataList.get(2), departureDateTime, arrivalDateTime, Integer.parseInt(flightDataList.get(5)));
+        flight.setSeats(seats);
+        return flight;
     }
 
     public Calendar getDateAndTime(String s) throws ParseException {
@@ -77,46 +81,15 @@ public class FlightDTO {
         sb.append(flight.getDepartureDate() + " " + flight.getDepartureTime() + ",");
         sb.append(flight.getArrivalDate() + " " + flight.getArrivalTime() + ",");
         sb.append(flight.getNumberOfTotalSeats() + ",");
-        sb.append(flight.getAvailableSeats() + ",");
-        sb.append(flight.getAvailableBusinessClassSeats() + ",");
-        sb.append(flight.getAvailableFirstClassSeats() + ",");
-        sb.append(flight.getAvailableSecondClassSeats() + ",");
-        sb.append(flight.getAvailableEconomicClassSeats());
+        sb.append(flight.getSeatsDetails() + ",");
         return sb.toString();
     }
 
     public void upDateSeats(Flight flight, String selectedClassType, int numberOfPassengers) {
-        switch (selectedClassType) {
-            case "businessClass":
-                flight.upDateBusinessClassSeats(numberOfPassengers);
-                break;
-            case "firstClass":
-                flight.upDateFirstClassSeats(numberOfPassengers);
-                break;
-            case "secondClass":
-                flight.upDateSecondClassSeats(numberOfPassengers);
-                break;
-            case "economicClass":
-                flight.upDateEconomicClassSeats(numberOfPassengers);
-                break;
-        }
+        flight.upDateSeats(selectedClassType,numberOfPassengers);
     }
 
     public int getCostOfSeat(String classType, Flight flight) {
-        switch (classType) {
-            case "businessClass":
-                return flight.getBusinessClassTicketCost();
-
-            case "firstClass":
-                return flight.getFirstClassTicketCost();
-
-            case "secondClass":
-                return flight.getSecondClassTicketCost();
-
-            case "economicClass":
-                return flight.getEconomicClassTicketCost();
-            default:
-                return 0;
-        }
+       return flight.getBasePrice(classType);
     }
 }
