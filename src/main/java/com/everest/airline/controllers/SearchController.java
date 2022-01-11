@@ -20,9 +20,6 @@ public class SearchController {
     @Autowired
     private PriceStrategyService priceStrategyService;
 
-    @Autowired
-    private BookingDTO bookingDTO;
-
     @RequestMapping(value = "/")
     public String home() {
         return "home";

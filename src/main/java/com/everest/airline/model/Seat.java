@@ -11,6 +11,18 @@ public class Seat {
         this.firstClass = firstClass;
     }
 
+    public EconomicClassSeat getEconomicClass() {
+        return economicClass;
+    }
+
+    public FirstClassSeat getFirstClass() {
+        return firstClass;
+    }
+
+    public SecondClassSeats getSecondClass() {
+        return secondClass;
+    }
+
     public void upDateSeats(String classType, int noOfTickets) {
         ISeat seat=getSeatType(classType);
         seat.upDateSeats(noOfTickets);

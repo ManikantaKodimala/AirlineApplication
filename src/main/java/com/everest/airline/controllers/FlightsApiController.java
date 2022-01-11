@@ -15,12 +15,12 @@ public class FlightsApiController {
     private FileHandler fileHandler;
 
     @GetMapping("/flights")
-    public List<Flight> getAllFlights() throws IOException {
+    public List<Flight> getAllFlights() {
         return fileHandler.readDataFromFolder();
     }
 
     @GetMapping("/flights/{number}")
-    public Flight getAFlight(@PathVariable("number") long number) throws IOException {
+    public Flight getAFlight(@PathVariable("number") long number) {
         return fileHandler.readFlight(number);
     }
 
@@ -35,7 +35,7 @@ public class FlightsApiController {
     }
 
     @DeleteMapping("/flights/{number}")
-    public boolean deleteFlight(@PathVariable("number") long number) throws IOException {
+    public boolean deleteFlight(@PathVariable("number") long number){
         return fileHandler.deleteFlight(number);
     }
 }

@@ -4,13 +4,11 @@ import com.everest.airline.model.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class BookingDTO {
@@ -18,7 +16,7 @@ public class BookingDTO {
     @Autowired
     public FlightDTO flightDTO;
 
-    public void updateFlightData(Flight searchData) throws IOException {
+    public void updateFlightData(Flight searchData) {
             try {
                 updateFile(searchData);
             } catch (IOException e) {
@@ -35,8 +33,7 @@ public class BookingDTO {
     public Flight getFlight(int flightNum) throws IOException, ParseException {
         String path = "/Users/kodimalamanikanta/IdeaProjects/airlines/src/main/java/com/everest/airline/database/flightsdata/"+flightNum+".txt";
         Path filePath = Path.of(path);
-        List<String> lines = Files.readAllLines(filePath);;
-        Flight flightInstance=flightDTO.getFlightInstance(lines.get(0));
-        return flightInstance;
+        List<String> lines = Files.readAllLines(filePath);
+        return flightDTO.getFlightInstance(lines.get(0));
     }
 }

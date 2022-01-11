@@ -53,7 +53,6 @@ public class FlightDTO {
 
     public Flight getFlightInstance(String flightData) throws ParseException {
         List<String> flightDataList = List.of(flightData.split("[,]", 0));
-        System.out.println("data from file "+flightData);
         Calendar departureDateTime = getDateAndTime(flightDataList.get(3));
         Calendar arrivalDateTime = getDateAndTime(flightDataList.get(4));
         EconomicClassSeat economicClassSeat=new EconomicClassSeat(Integer.parseInt(flightDataList.get(6)),Integer.parseInt(flightDataList.get(7)),Integer.parseInt(flightDataList.get(8)));
