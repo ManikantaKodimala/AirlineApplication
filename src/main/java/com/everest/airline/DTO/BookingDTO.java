@@ -1,39 +1,26 @@
 package com.everest.airline.DTO;
 
 import com.everest.airline.model.Flight;
+import com.everest.airline.model.FlightRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.text.ParseException;
-import java.util.List;
+import java.util.Map;
 
 @Component
 public class BookingDTO {
 
     @Autowired
-    public FlightDTO flightDTO;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void updateFlightData(Flight searchData) {
-            try {
-                updateFile(searchData);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void updateFlightData(Flight bookedFlight) {
+        FlightRowMapper flightRowMapper= new FlightRowMapper();
+        Map<String, Object> stringObjectMap = flightRowMapper.mapObject(bookedFlight);
+        jdbcTemplate.update("UPDATE secondClassSeats SET totalNumberOfSecondClassSeats =:totalNumberOfSecondClassSeats , numberOfAvailableSecondClassSeats =:numberOfAvailableSecondClassSeats ,SecondClassBasePrice =:SecondClassBasePrice  where `number` =:number",stringObjectMap);
+        jdbcTemplate.update("UPDATE economicClassSeats SET totalNumberOfEconomicClassSeats =:totalNumberOfEconomicClassSeats ,numberOfAvailableEconomicClassSeats =:numberOfAvailableEconomicClassSeats ,EconomicClassBasePrice =:EconomicClassBasePrice WHERE `number` =:number",stringObjectMap);
+        jdbcTemplate.update("UPDATE firstClassSeats SET totalNumberOfFirstClassSeats =:totalNumberOfFirstClassSeats ,numberOfAvailableFirstClassSeats =:numberOfAvailableFirstClassSeats ,FirstClassBasePrice =:FirstClassBasePrice where `number` =:number",stringObjectMap);
     }
 
-    private void updateFile(Flight flight) throws IOException {
-        String path = "/Users/kodimalamanikanta/IdeaProjects/airlines/src/main/java/com/everest/airline/database/flightsdata/"+flight.getNumber()+".txt";
-        Path filePath = Path.of(path);
-        Files.write(filePath, List.of(flightDTO.getFlightDetails(flight)));
-    }
 
-    public Flight getFlight(int flightNum) throws IOException, ParseException {
-        String path = "/Users/kodimalamanikanta/IdeaProjects/airlines/src/main/java/com/everest/airline/database/flightsdata/"+flightNum+".txt";
-        Path filePath = Path.of(path);
-        List<String> lines = Files.readAllLines(filePath);
-        return flightDTO.getFlightInstance(lines.get(0));
-    }
 }

@@ -1,105 +1,90 @@
 package com.everest.airline.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
+import java.time.LocalDateTime;
+
+//@Entity
+//@Table(name = "flight")
 public class Flight {
+//    @Id
     private long number;
     private String source;
     private String destination;
-    private Calendar departureDateTime;
-    private Calendar arrivalDateTime;
+    private LocalDateTime departureDateTime;
+    private LocalDateTime arrivalDateTime;
     private int numberOfTotalSeats;
     private double totalFair = 0;
-    private Seat seats;
+    private Seats seats;
 
-    public Flight(long number, String source, String destination, Calendar departureDateTime, Calendar arrivalDateTime, int noOfTotalSeats) {
+
+
+    public Flight() {
+    }
+
+    public Flight(long number, String source, String destination, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime, int numberOfTotalSeats) {
+
         this.number = number;
         this.source = source;
         this.destination = destination;
         this.departureDateTime = departureDateTime;
         this.arrivalDateTime = arrivalDateTime;
-        this.numberOfTotalSeats = noOfTotalSeats;
+        this.numberOfTotalSeats = numberOfTotalSeats;
     }
 
-    public Flight() {
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public void setNumber(long number) {
-        this.number = number;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public void setDepartureDateTime(Calendar departureDateTime) {
-        this.departureDateTime = departureDateTime;
+    public int getNumberOfTotalSeats() {
+        return numberOfTotalSeats;
     }
 
     public void setNumberOfTotalSeats(int numberOfTotalSeats) {
         this.numberOfTotalSeats = numberOfTotalSeats;
     }
 
-    public Date getDepartureDateTime() {
-        return departureDateTime.getTime();
+    public LocalDateTime getArrivalDateTime() {
+        return arrivalDateTime;
     }
 
-    public void setDepartureDate(Calendar departureDateTime) {
-        this.departureDateTime = departureDateTime;
-    }
-
-    public Date getArrivalDateTime() {
-        return arrivalDateTime.getTime();
-    }
-
-    public void setArrivalDateTime(Calendar arrivalDateTime) {
+    public void setArrivalDateTime(LocalDateTime arrivalDateTime) {
         this.arrivalDateTime = arrivalDateTime;
     }
 
-    public String getDepartureDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = this.departureDateTime.getTime();
-        return formatter.format(date);
+    public LocalDateTime getDepartureDateTime() {
+        return departureDateTime;
     }
 
-    public String getDepartureTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
-        Date date = this.departureDateTime.getTime();
-        return formatter.format(date);
+    public void setDepartureDateTime(LocalDateTime departureDateTime) {
+        this.departureDateTime = departureDateTime;
     }
 
-    public String getArrivalDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = this.arrivalDateTime.getTime();
-        return formatter.format(date);
+    public String getDestination() {
+        return destination;
     }
 
-    public String getArrivalTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
-        Date date = this.arrivalDateTime.getTime();
-        return formatter.format(date);
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public int getNumberOfTotalSeats() {
-        return numberOfTotalSeats;
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public long getNumber() {
+        return number;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
+    public Seats getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Seats seats) {
+        this.seats = seats;
     }
 
     public double getTotalFair() {
@@ -108,29 +93,5 @@ public class Flight {
 
     public void setTotalFair(double totalFair) {
         this.totalFair = totalFair;
-    }
-
-    public void setSeats(Seat seats) {
-        this.seats = seats;
-    }
-
-    public int getTotalNumberOfSeats(String classType) {
-        return this.seats.getTotalNumberOfSeats(classType);
-    }
-
-    public int getNumberOfAvailableSeats(String classType) {
-        return this.seats.getNumberOfAvailableSeats(classType);
-    }
-
-    public void upDateSeats(String classType, int noOfTickets) {
-        this.seats.upDateSeats(classType, noOfTickets);
-    }
-
-    public int getBasePrice(String classType) {
-        return this.seats.getBasePrice(classType);
-    }
-
-    public String getSeatsDetails() {
-        return this.seats.toString();
     }
 }

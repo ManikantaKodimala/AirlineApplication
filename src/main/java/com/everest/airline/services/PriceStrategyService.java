@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -27,10 +28,10 @@ public class PriceStrategyService {
         return totalFaire;
     }
     public double getTicketCost(String classType, Flight flight, String todayDate) throws ParseException {
-        int baseCost=flightDTO.getCostOfSeat(classType, flight);
-        String departureDate = flight.getDepartureDate();
+        int baseCost=flight.getSeats().getBasePrice(classType);
+        String departureDate = flight.getDepartureDateTime().toString();
         int totalSeats=flight.getNumberOfTotalSeats();
-        int availableSeats=flight.getNumberOfAvailableSeats(classType);
+        int availableSeats=flight.getSeats().getNumberOfAvailableSeats(classType);
         double multiplyFactorOfAvailableSeats=getPriceFactorByLeftOverSeats(availableSeats,totalSeats)/100;
         double multiplicationFactorOfDateOfBook=getPriceFactorByDate(departureDate,todayDate)/100;
         System.out.println("increase factor="+multiplicationFactorOfDateOfBook);

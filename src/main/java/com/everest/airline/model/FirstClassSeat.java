@@ -1,51 +1,52 @@
 package com.everest.airline.model;
 
 public class FirstClassSeat implements ISeat {
-    private int totalNumberOfSeats;
-    private int numberOfAvailableSeats;
-    private int basePrice;
+    private int totalNumberOfFirstClassSeats;
+    private int numberOfAvailableFirstClassSeats;
+    private int FirstClassBasePrice;
 
+    public FirstClassSeat(){}
     public FirstClassSeat(int totalNumberOfSeats, int numberOfAvailableSeats, int basePrice) {
-        this.totalNumberOfSeats = totalNumberOfSeats;
-        this.numberOfAvailableSeats = numberOfAvailableSeats;
-        this.basePrice = basePrice;
+        this.totalNumberOfFirstClassSeats = totalNumberOfSeats;
+        this.numberOfAvailableFirstClassSeats = numberOfAvailableSeats;
+        this.FirstClassBasePrice = basePrice;
     }
 
     public void setTotalNumberOfSeats(int totalNumberOfSeats) {
-        this.totalNumberOfSeats = totalNumberOfSeats;
+        this.totalNumberOfFirstClassSeats = totalNumberOfSeats;
     }
 
     public void setBasePrice(int basePrice) {
 
-        this.basePrice = basePrice;
+        this.FirstClassBasePrice = basePrice;
     }
 
     public void setNumberOfAvailableSeats(int numberOfAvailableSeats) {
-        this.numberOfAvailableSeats = numberOfAvailableSeats;
+        this.numberOfAvailableFirstClassSeats = numberOfAvailableSeats;
     }
 
     @Override
     public void upDateSeats(int noOfEconomicTickets) {
-        this.numberOfAvailableSeats -= noOfEconomicTickets;
+        this.numberOfAvailableFirstClassSeats -= noOfEconomicTickets;
     }
 
     @Override
     public int getNumberOfAvailableSeats() {
-        return this.numberOfAvailableSeats;
+        return this.numberOfAvailableFirstClassSeats;
     }
 
     @Override
     public int getTotalNumberOfSeats() {
-        return this.totalNumberOfSeats;
+        return this.totalNumberOfFirstClassSeats;
     }
 
     public int getBasePrice() {
-        return this.basePrice;
+        return this.FirstClassBasePrice;
     }
 
     @Override
     public String toString() {
-        return totalNumberOfSeats +","+ numberOfAvailableSeats +","+ basePrice;
+        return totalNumberOfFirstClassSeats +","+ numberOfAvailableFirstClassSeats +","+ FirstClassBasePrice;
     }
 }
 

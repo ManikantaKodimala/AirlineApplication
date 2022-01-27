@@ -1,50 +1,52 @@
 package com.everest.airline.model;
 
 public class EconomicClassSeat implements ISeat {
-    private int totalNumberOfSeats;
-    private int numberOfAvailableSeats;
-    private int basePrice;
+    private int totalNumberOfEconomicClassSeats;
+    private int numberOfAvailableEconomicSeats;
+    private int EconomicClassBasePrice;
+
+    public EconomicClassSeat(){}
 
     public EconomicClassSeat(int totalNumberOfSeats, int numberOfAvailableSeats, int basePrice) {
-        this.totalNumberOfSeats = totalNumberOfSeats;
-        this.numberOfAvailableSeats = numberOfAvailableSeats;
-        this.basePrice = basePrice;
+        this.totalNumberOfEconomicClassSeats = totalNumberOfSeats;
+        this.numberOfAvailableEconomicSeats = numberOfAvailableSeats;
+        this.EconomicClassBasePrice = basePrice;
     }
 
     public void setTotalNumberOfSeats(int totalNumberOfSeats) {
-        this.totalNumberOfSeats = totalNumberOfSeats;
+        this.totalNumberOfEconomicClassSeats = totalNumberOfSeats;
     }
 
     public void setBasePrice(int basePrice) {
 
-        this.basePrice = basePrice;
+        this.EconomicClassBasePrice = basePrice;
     }
 
     public void setNumberOfAvailableSeats(int numberOfAvailableSeats) {
-        this.numberOfAvailableSeats = numberOfAvailableSeats;
+        this.numberOfAvailableEconomicSeats = numberOfAvailableSeats;
     }
 
     @Override
     public void upDateSeats(int noOfEconomicTickets) {
-        this.numberOfAvailableSeats -= noOfEconomicTickets;
+        this.numberOfAvailableEconomicSeats -= noOfEconomicTickets;
     }
 
     @Override
     public int getNumberOfAvailableSeats() {
-        return this.numberOfAvailableSeats;
+        return this.numberOfAvailableEconomicSeats;
     }
 
     @Override
     public int getTotalNumberOfSeats() {
-        return this.totalNumberOfSeats;
+        return this.totalNumberOfEconomicClassSeats;
     }
 
     public int getBasePrice() {
-        return this.basePrice;
+        return this.EconomicClassBasePrice;
     }
 
     @Override
     public String toString() {
-        return "" + totalNumberOfSeats +"," + numberOfAvailableSeats +"," + basePrice;
+        return "" + totalNumberOfEconomicClassSeats +"," + numberOfAvailableEconomicSeats +"," + EconomicClassBasePrice;
     }
 }

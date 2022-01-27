@@ -1,13 +1,26 @@
 package com.everest.airline.model;
 
-public class Seat {
+public class Seats {
     private EconomicClassSeat economicClass;
     private SecondClassSeats secondClass;
     private FirstClassSeat firstClass;
 
-    public Seat(EconomicClassSeat economicClass, SecondClassSeats secondClass, FirstClassSeat firstClass) {
+    public Seats(){}
+    public Seats(EconomicClassSeat economicClass, SecondClassSeats secondClass, FirstClassSeat firstClass) {
         this.economicClass = economicClass;
         this.secondClass = secondClass;
+        this.firstClass = firstClass;
+    }
+
+    public void setEconomicClass(EconomicClassSeat economicClass) {
+        this.economicClass = economicClass;
+    }
+
+    public void setSecondClass(SecondClassSeats secondClass) {
+        this.secondClass = secondClass;
+    }
+
+    public void setFirstClass(FirstClassSeat firstClass) {
         this.firstClass = firstClass;
     }
 

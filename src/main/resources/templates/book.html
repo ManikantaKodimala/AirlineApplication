@@ -6,15 +6,15 @@
 </head>
 <body>
 <h1>Thanks for Booking</h1>
-<form th:action="@{/}">
+<form th:action="@{/}" method="post">
 <table border="1">
     <th>Number</th>
     <th>From</th>
     <th>To</th>
     <th>Departure Date</th>
-    <th>Departure Time</th>
+<!--    <th>Departure Time</th>-->
     <th>Arrival Date</th>
-    <th>Arrival Time</th>
+<!--    <th>Arrival Time</th>-->
     <th>Seat Type</th>
     <th>No.Of Tickets booked</th>
     <th>Total cost</th>
@@ -22,10 +22,10 @@
         <td th:text="${flight.number}"></td>
         <td th:text="${flight.source}"></td>
         <td th:text="${flight.destination} "></td>
-        <td th:text="${flight.departureDate}"></td>
-        <td th:text="${flight.departureTime}"></td>
-        <td th:text="${flight.arrivalDate}"></td>
-        <td th:text="${flight.arrivalTime}"></td>
+        <td th:text="${flight.departureDateTime}"></td>
+<!--        <td th:text="${flight.departureTime}"></td>-->
+        <td th:text="${flight.arrivalDateTime}"></td>
+<!--        <td th:text="${flight.arrivalTime}"></td>-->
         <td th:text="${selectedClassType}"></td>
         <td th:text="${numberOfPassengers}"></td>
         <td th:text="${flight.totalFair}"></td>
