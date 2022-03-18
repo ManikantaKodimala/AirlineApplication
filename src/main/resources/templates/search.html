@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -7,17 +7,45 @@
 </head>
 
 <body>
-    <h1>Airline application</h1>
-    <table border="1">
-        <th>Number</th>
-        <th>From</th>
-        <th>To</th>
-        <tr th:each="flight:${flights}">
-            <td th:text="${flight.number}"></td>
-            <td th:text="${flight.source}"></td>
-            <td th:text="${flight.destination}"></td>
-        </tr>
-    </table>
+<h1>Airline application</h1>
+
+<table border="1">
+    <th>Number</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Departure Date</th>
+    <th>Departure Time</th>
+    <th>Arrival Date</th>
+    <th>Arrival Time</th>
+    <th>Class Type</th>
+    <th>Available Seats</th>
+    <th>No.of Tickets</th>
+    <th>Total Fare</th>
+    <th>Book</th>
+    <tr th:each="flight:${flights}">
+        <td th:text="${flight.number}"></td>
+        <td th:text="${flight.source}"></td>
+        <td th:text="${flight.destination} "></td>
+        <td th:text="${flight.departureDate}"></td>
+        <td th:text="${flight.departureTime}"></td>
+        <td th:text="${flight.arrivalDate}"></td>
+        <td th:text="${flight.arrivalTime}"></td>
+        <td th:text="${selectedClassType}"></td>
+        <td th:text="${flight.getNumberOfAvailableSeats(selectedClassType)}"></td>
+        <td th:text="${numberOfPassengers}"></td>
+        <td th:text="${flight.totalFair}"></td>
+        <td>
+            <form th:action="@{/bookFlight}" th:object="${flight}" method="post" modelAttribute="flight">
+                <input type="hidden" name="selectedClassType" th:value="${selectedClassType}">
+                <input type="hidden" name="todayDate" th:value="${todayDate}">
+                <input type="hidden" th:value="${numberOfPassengers}" name="numberOfPassengers">
+                <input type="hidden" for="flightNumber">
+                <button type="submit" id="flightNumber" th:value="${flight.number}" name="flightNumber">Book</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
 </body>
 
 </html>

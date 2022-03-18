@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+</head>
+<body>
+<h1>Thanks for Booking</h1>
+<form th:action="@{/}">
+<table border="1">
+    <th>Number</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Departure Date</th>
+    <th>Departure Time</th>
+    <th>Arrival Date</th>
+    <th>Arrival Time</th>
+    <th>Seat Type</th>
+    <th>No.Of Tickets booked</th>
+    <th>Total cost</th>
+    <tr>
+        <td th:text="${flight.number}"></td>
+        <td th:text="${flight.source}"></td>
+        <td th:text="${flight.destination} "></td>
+        <td th:text="${flight.departureDate}"></td>
+        <td th:text="${flight.departureTime}"></td>
+        <td th:text="${flight.arrivalDate}"></td>
+        <td th:text="${flight.arrivalTime}"></td>
+        <td th:text="${selectedClassType}"></td>
+        <td th:text="${numberOfPassengers}"></td>
+        <td th:text="${flight.totalFair}"></td>
+    </tr>
+</table>
+    <button type="submit" th:value="Home" name="Home">Home</button>
+</form>
+</body>
+</html>
